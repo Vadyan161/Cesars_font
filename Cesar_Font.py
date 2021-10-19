@@ -1,10 +1,4 @@
-print(ord('A'), ord('Z'), ord('А'), ord('Я'))
-print(ord('a'), ord('z'), ord('а'), ord('я'))
 print()
-nap = input('Введите направление (шифрование или дешифрование):')
-lan = input('Введите язык ввода (en, rus):')
-step = int(input('Введите шаг сдвига:'))
-x = input('Введите ваше сообщение:')
 
 
 def encode_rus(step, x):
@@ -83,15 +77,32 @@ def decode_en(step, x):
     print(y)
 
 
-if nap.lower() == 'шифрование':
-    if lan.lower() == 'rus':
-        encode_rus(step, x)
+nap = input('Введите направление (шифрование или дешифрование):')
+lan = input('Введите язык ввода (en, rus):')
+x = input('Введите ваше сообщение:')
+
+while True:
+    step = int(input('Введите шаг сдвига:'))
+
+    if nap.lower() == 'шифрование' or 'encode':
+        if lan.lower() == 'rus':
+            encode_rus(step, x)
+        elif lan.lower() == 'en':
+            encode_en(step, x)
+        else:
+            print('При выборе языка была допущена ошибка')
+    elif nap.lower() == 'дешифрование' or 'decodeR':
+        if lan.lower() == 'rus':
+            decode_rus(step, x)
+        elif lan.lower() == 'en':
+            decode_en(step, x)
+        else:
+            print('При выборе языка была допущена ошибка')
     else:
-        encode_en(step,x)
-elif nap.lower() == 'дешифрование':
-    if lan.lower() == 'rus':
-        decode_rus(step, x)
-    else:
-        decode_en(step, x)
-else:
-    print('При выборе направления была допущена ошибка')
+        print('При выборе направления была допущена ошибка')
+
+    m = input('Хотите изменить шаг сдвига?')
+    if m.lower() == 'нет' or m.lower() == 'no':
+        print("Спасибо, что воспользовались шифратором Цезаря!")
+        break
+
