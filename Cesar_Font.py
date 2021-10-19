@@ -1,5 +1,6 @@
 print()
 
+
 def encode_rus(step, x):
     y = ''
     for i in range(len(x)):
